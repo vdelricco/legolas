@@ -1,0 +1,5 @@
+# gradle stuff
+build/
+.gradle/
+# fuck windows
+gradlew.bat
