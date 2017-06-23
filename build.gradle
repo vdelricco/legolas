@@ -30,6 +30,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-mainClassName = "me.greenleaf.Legolas"
+run {
+    standardInput = System.in
+}
+
+mainClassName = "me.greenleaf.Main"
 
 defaultTasks 'clean', 'assemble', 'build'

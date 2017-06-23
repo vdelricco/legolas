@@ -1,24 +1,45 @@
 package me.greenleaf;
 
-public class Legolas {
-    private SASS_LEVELS sass;
+import java.util.ArrayList;
+import java.util.Random;
 
-    public static void main(String[] args) {
-        Legolas.getInstance().setSass(SASS_LEVELS.LOW);
+public class Legolas {
+    private SASS_LEVEL sass;
+    private static Legolas legolasInstance;
+
+    private Legolas() {
+        sass = SASS_LEVEL.HIGH;
     }
 
     public static Legolas getInstance() {
-        return new Legolas();
+        if (legolasInstance == null) {
+            legolasInstance = new Legolas();
+        }
+        return legolasInstance;
     }
 
-    public void setSass(SASS_LEVELS sass) {
-        if (sass != SASS_LEVELS.HIGH) {
+    public String queryMind(String question) {
+        Random rand = new Random();
+        return responses.get(rand.nextInt(responses.size()));
+    }
+
+    public void setSass(SASS_LEVEL sass) {
+        if (sass != SASS_LEVEL.HIGH) {
             throw new IllegalArgumentException("Sass cannot be set lower than HIGH");
         }
         this.sass = sass;
     }
 
-    public enum SASS_LEVELS {
+    private static final ArrayList<String> responses = new ArrayList<>();
+    static {
+        responses.add("7");
+        responses.add("No");
+        responses.add("I can't hear you I have my head in the cloud");
+        responses.add("WOooOooOooOoOoo");
+        responses.add("Torchys?");
+    }
+
+    public enum SASS_LEVEL {
         LOW, MEDIUM, HIGH
     }
 }
